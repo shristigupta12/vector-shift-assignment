@@ -1,10 +1,7 @@
-// ui.js
-// Displays the drag-and-drop UI
-// --------------------------------------------------
 
 import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
-import { useStore } from '../store';
+import { useStore } from '../stores/store';
 import { shallow } from 'zustand/shallow';
 import { InputNode } from './nodes/inputNode';
 import { LLMNode } from './nodes/llmNode';
@@ -14,6 +11,7 @@ import { TranslatorNode } from './nodes/TranslatorNode';
 import { ClassifierNode } from './nodes/ClassifierNode';
 import { SummarizerNode } from './nodes/SummarizerNode';
 import { RegexNode } from './nodes/RegexNode';
+import { Undo, Redo } from 'lucide-react';
 
 import 'reactflow/dist/style.css';
 
@@ -38,6 +36,10 @@ const selector = (state) => ({
   onNodesChange: state.onNodesChange,
   onEdgesChange: state.onEdgesChange,
   onConnect: state.onConnect,
+  undo: state.undo,
+  redo: state.redo,
+  canUndo: state.canUndo,
+  canRedo: state.canRedo,
 });
 
 export const PipelineUI = () => {
@@ -50,7 +52,11 @@ export const PipelineUI = () => {
       addNode,
       onNodesChange,
       onEdgesChange,
-      onConnect
+      onConnect,
+      undo,
+      redo,
+      canUndo,
+      canRedo
     } = useStore(selector, shallow);
 
     const getInitNodeData = (nodeID, type) => {
@@ -67,7 +73,6 @@ export const PipelineUI = () => {
             const appData = JSON.parse(event.dataTransfer.getData('application/reactflow'));
             const type = appData?.nodeType;
       
-            // check if the dropped element is valid
             if (typeof type === 'undefined' || !type) {
               return;
             }
@@ -88,7 +93,7 @@ export const PipelineUI = () => {
             addNode(newNode);
           }
         },
-        [reactFlowInstance]
+        [reactFlowInstance, getNodeID, addNode] 
     );
 
     const onDragOver = useCallback((event) => {
@@ -98,6 +103,23 @@ export const PipelineUI = () => {
 
     return (
         <>
+        <div className="absolute top-[20vh] right-4 z-10 bg-white p-2 rounded-md shadow-md flex gap-2 border border-neutral-300">
+            <button 
+                onClick={undo} 
+                disabled={!canUndo()} 
+                className='text-neutral-500 hover:text-primary-600 disabled:text-neutral-400 disabled:cursor-not-allowed hover:cursor-pointer'
+            >
+                <Undo size={16} />
+            </button>
+            <button 
+                onClick={redo} 
+                disabled={!canRedo()} 
+                className='text-neutral-500 hover:text-primary-600 disabled:text-neutral-400 disabled:cursor-not-allowed hover:cursor-pointer'
+            >
+                <Redo size={16} />
+            </button>
+        </div>
+
         <div ref={reactFlowWrapper} style={{width: '100wv', height: '100%', flexGrow: 1}}>
             <ReactFlow
                 nodes={nodes}

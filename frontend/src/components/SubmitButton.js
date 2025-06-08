@@ -1,6 +1,6 @@
 // submit.js
 
-import { useStore } from '../store';
+import { useStore } from '../stores/store';
 import { shallow } from 'zustand/shallow';
 
 const selector = (state) => ({
