@@ -34,22 +34,22 @@ export const EditNodeDropdown = ({ nodeId }) => {
         <div className="relative" ref={dropdownRef}>
             <button 
                 onClick={() => setIsOpen(!isOpen)} 
-                className="p-1 rounded-full hover:bg-gray-100 transition-colors"
+                className="p-1 rounded-full hover:bg-primary-300 transition-colors hover:dark:bg-darkPrimary-300"
                 title="Node actions"
             >
                 <Ellipsis size={16} />
             </button>
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded-md shadow-lg py-1 z-20">
+                <div className="absolute -right-30 font-medium  bg-white border border-primary-300 border-rounded rounded-md shadow-md z-20 dark:bg-darkPrimary-300 dark:border-darkPrimary-400">
                     <button 
                         onClick={handleDuplicate} 
-                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        className="block w-full text-left px-4 py-2  text-sm text-gray-700 hover:bg-primary-100 rounded-t-md dark:text-dark-text dark:hover:bg-darkPrimary-400"
                     >
                         Duplicate
                     </button>
                     <button 
                         onClick={handleDelete} 
-                        className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                        className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-neutral-50 rounded-b-md dark:text-red-500 dark:hover:bg-darkPrimary-400"
                     >
                         Delete
                     </button>

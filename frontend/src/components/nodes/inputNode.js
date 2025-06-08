@@ -27,7 +27,7 @@ export const InputNode = ({ id, data }) => {
             type="text" 
             value={currName} 
             onChange={handleNameChange}
-            className="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            className="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-black"
           />
         </label>
         <label className="flex flex-col text-sm">
