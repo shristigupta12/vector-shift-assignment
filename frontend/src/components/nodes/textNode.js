@@ -8,7 +8,7 @@ const variableRegex = /{{\s*(\w+)\s*}}/g;
 export const TextNode = ({ id, data }) => {
   const [currText, setCurrText] = useState(data?.text || '{{input}}');
   const [variables, setVariables] = useState([]);
-  const [width, setWidth] = useState(100);
+  const [width, setWidth] = useState(200);
   const spanRef = useRef(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const TextNode = ({ id, data }) => {
 
   useEffect(() => {
     if (spanRef.current) {
-      setWidth(spanRef.current.offsetWidth);
+      setWidth(Math.max(200, spanRef.current.offsetWidth + 20));
     }
   }, [currText]);
 
@@ -44,32 +44,33 @@ export const TextNode = ({ id, data }) => {
   }, [id, variables]);
 
   return (
-    <BaseNode id={id} data={data} handles={handles}>
-      <div className="flex flex-col gap-2">
-        <label className="flex flex-col text-sm">
-          Text:
-          <TextareaAutosize 
-            minRows={1}
-            value={currText} 
-            onChange={handleTextChange} 
-            className="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-            style={{ width: `${width}px` }}
-          />
-        </label>
-        <div 
-          ref={spanRef} 
-          className="text-sm"
-          style={{ 
-            position: 'absolute', 
-            visibility: 'hidden', 
-            whiteSpace: 'pre',
-            padding: '6px 8px',
-            border: '1px solid transparent' 
-          }}
-        >
-          {currText.split('\n').reduce((longest, current) => current.length > longest.length ? current : longest, '')}
+    <>
+      <BaseNode id={id} data={data} handles={handles} style={{ width: `${width}px` }}>
+        <div className="flex flex-col gap-2">
+          <label className="flex flex-col text-sm">
+            Text:
+            <TextareaAutosize 
+              minRows={1}
+              value={currText} 
+              onChange={handleTextChange} 
+              className="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            />
+          </label>
         </div>
+      </BaseNode>
+      <div 
+        ref={spanRef} 
+        className="text-sm"
+        style={{ 
+          position: 'absolute', 
+          visibility: 'hidden', 
+          whiteSpace: 'pre',
+          padding: '6px 8px',
+          border: '1px solid transparent' 
+        }}
+      >
+        {currText.split('\n').reduce((longest, current) => current.length > longest.length ? current : longest, '')}
       </div>
-    </BaseNode>
+    </>
   );
 } 
