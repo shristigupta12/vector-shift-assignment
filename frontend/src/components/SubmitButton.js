@@ -38,7 +38,7 @@ export const SubmitButton = () => {
         <div className="flex items-center justify-center p-4">
             <button
                 type="button"
-                className="bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+                className="bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 dark:bg-darkPrimary-400 dark:hover:bg-gradient-to-r dark:from-darkPrimary-300 dark:to-darkPrimary-400"
                 onClick={handleSubmit}
             >
                 Submit

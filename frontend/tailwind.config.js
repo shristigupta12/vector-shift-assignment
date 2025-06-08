@@ -31,6 +31,21 @@ module.exports = {
           500: '#6366F1',
           600: '#4F45E4',
         },
+        darkPrimary: {
+          50: "#12072D",
+          100: "#1E0D40",
+          200: "#130049",
+          300: "#1D0C3F",
+          400: "#420C89",
+          500: "#BD7DFE",
+          600: '#8A3FFC',
+        },
+        dark: {
+          'background': '#04020B',
+          'text': '#f8f8f8',
+          'primary': '#6366F1',
+          'border': '#2c2c2c',
+        },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",

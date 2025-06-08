@@ -161,5 +161,8 @@ export const useStore = create((set, get) => {
 
         canUndo: () => past.length > 0,
         canRedo: () => future.length > 0,
+
+        theme: 'light',
+        toggleTheme: () => set((state) => ({ theme: state.theme === 'light' ? 'dark' : 'light' })),
     };
 });

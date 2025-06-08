@@ -104,18 +104,18 @@ export const PipelineUI = () => {
 
     return (
         <>
-        <div className="absolute lg:top-[20vh] sm:top-[26vh] top-[42vh] sm:right-[50vw] right-[42vw] z-10 bg-white p-2 rounded-md shadow-md flex gap-2 border border-neutral-300">
+        <div className="absolute lg:top-[22vh] sm:top-[27vh] top-[43vh] sm:right-[50vw] right-[42vw] z-10 bg-white p-2 rounded-md shadow-md flex gap-2 border border-neutral-300 dark:bg-darkPrimary-50 dark:border-darkPrimary-400">
             <button 
                 onClick={undo} 
                 disabled={!canUndo()} 
-                className='text-neutral-500 hover:text-primary-600 disabled:text-neutral-400 disabled:cursor-not-allowed hover:cursor-pointer'
+                className='text-neutral-500 hover:text-primary-600 disabled:text-neutral-400 disabled:cursor-not-allowed hover:cursor-pointer dark:text-neutral-400 dark:hover:text-primary-500'
             >
                 <Undo size={16} />
             </button>
             <button 
                 onClick={redo} 
                 disabled={!canRedo()} 
-                className='text-neutral-500 hover:text-primary-600 disabled:text-neutral-400 disabled:cursor-not-allowed hover:cursor-pointer'
+                className='text-neutral-500 hover:text-primary-600 disabled:text-neutral-400 disabled:cursor-not-allowed hover:cursor-pointer dark:text-neutral-400 dark:hover:text-primary-500'
             >
                 <Redo size={16} />
             </button>
@@ -135,6 +135,7 @@ export const PipelineUI = () => {
                 proOptions={proOptions}
                 snapGrid={[gridSize, gridSize]}
                 connectionLineType='smoothstep'
+                className='dark:bg-dark-background'
             >
                 <Background color="#aaa" gap={gridSize} />
                 <Controls />
