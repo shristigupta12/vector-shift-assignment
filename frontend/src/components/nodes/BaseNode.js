@@ -33,7 +33,7 @@ export const BaseNode = ({ id, data, children, handles, style }) => {
       className="bg-white text-sm border border-primary-400 hover:shadow-primary-400 rounded-lg shadow-sm min-w-[200px] border-primary-400 dark:bg-darkPrimary-300 dark:border-darkPrimary-400 dark:hover:shadow-darkPrimary-400"
       style={style}
     >
-      <div className={`p-2 rounded-t-lg text-neutral-800 border-b bg-primary-100 text-center font-bold flex items-center justify-between gap-2 dark:bg-darkPrimary-400 dark:border-darkPrimary-400 dark:text-neutral-300`}> 
+      <div className={`p-2 rounded-t-lg text-neutral-600 border-b bg-primary-100 text-center font-bold flex items-center justify-between gap-2 dark:bg-darkPrimary-400 dark:border-darkPrimary-400 dark:text-neutral-300`}> 
         <div className="flex items-center gap-2"> 
           {Icon && Icon}
           <span>{title}</span>

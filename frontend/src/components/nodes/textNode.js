@@ -47,13 +47,13 @@ export const TextNode = ({ id, data }) => {
     <>
       <BaseNode id={id} data={data} handles={handles} style={{ width: `${width}px` }}>
         <div className="flex flex-col gap-2">
-          <label className="flex flex-col text-sm">
+          <label className="flex flex-col text-sm gap-2">
             Text:
             <TextareaAutosize 
               minRows={1}
               value={currText} 
               onChange={handleTextChange} 
-              className="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              className="custom-textarea"
             />
           </label>
         </div>

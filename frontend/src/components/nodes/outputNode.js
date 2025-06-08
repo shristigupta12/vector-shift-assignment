@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select"
 
 export const OutputNode = ({ id, data }) => {
   const [currName, setCurrName] = useState(data?.outputName || id.replace('customOutput-', 'output_'));
@@ -10,32 +17,33 @@ export const OutputNode = ({ id, data }) => {
     setCurrName(e.target.value);
   };
 
-  const handleTypeChange = (e) => {
-    setOutputType(e.target.value);
-  };
-
   const handles = [
     { type: 'target', position: Position.Left, id: `${id}-value` }
   ];
 
   return (
     <BaseNode id={id} data={data} handles={handles}>
-      <div className="flex flex-col gap-2">
-        <label className="flex flex-col text-sm">
+      <div className="flex flex-col gap-3">
+        <label className="flex flex-col text-sm gap-2">
           Name:
           <input 
             type="text" 
             value={currName} 
             onChange={handleNameChange} 
-            className="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            className="custom-input"
           />
         </label>
-        <label className="flex flex-col text-sm">
+        <label className="flex flex-col text-sm gap-2">
           Type:
-          <select value={outputType} onChange={handleTypeChange} className="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-            <option value="Text">Text</option>
-            <option value="File">Image</option>
-          </select>
+          <Select value={outputType} onValueChange={setOutputType}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select a type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Text">Text</SelectItem>
+              <SelectItem value="File">Image</SelectItem>
+            </SelectContent>
+          </Select>
         </label>
       </div>
     </BaseNode>

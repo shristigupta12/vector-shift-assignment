@@ -106,4 +106,12 @@ code {
     background-color: theme('colors.darkPrimary.300');
     border-color: theme('colors.darkPrimary.400');
   }
+
+  .custom-input {
+    @apply rounded-md shadow-sm  dark:bg-darkPrimary-400 dark:text-dark-text  focus:outline-none focus:ring-0 border border-primary-300 dark:border-darkPrimary-300 hover:border-primary-400 focus:border-primary-400 p-2;
+  }
+
+  .custom-textarea {
+    @apply w-full dark:border-darkPrimary-300 rounded-md shadow-sm dark:bg-darkPrimary-400 dark:text-dark-text border border-primary-300 hover:border-primary-400 focus:border-primary-400 p-2 focus:outline-none focus:ring-0;
+  }
 }
