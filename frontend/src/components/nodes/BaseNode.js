@@ -25,8 +25,14 @@ export const BaseNode = ({ id, data, children, handles }) => {
           type={handle.type}
           position={handle.position}
           id={handle.id}
-          style={handle.style}
-          className="w-3 h-3 bg-blue-500 border-2 border-white rounded-full" 
+          style={{
+            width: '12px',
+            height: '12px',
+            borderRadius: '50%',
+            backgroundColor: 'white',
+            border: '1px solid #6b7280',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+          }} 
         />
       ))}
     </div>
