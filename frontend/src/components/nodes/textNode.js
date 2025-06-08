@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -8,6 +8,8 @@ const variableRegex = /{{\s*(\w+)\s*}}/g;
 export const TextNode = ({ id, data }) => {
   const [currText, setCurrText] = useState(data?.text || '{{input}}');
   const [variables, setVariables] = useState([]);
+  const [width, setWidth] = useState(100);
+  const spanRef = useRef(null);
 
   useEffect(() => {
     const newVariables = new Set();
@@ -16,6 +18,12 @@ export const TextNode = ({ id, data }) => {
       newVariables.add(match[1]);
     }
     setVariables(Array.from(newVariables));
+  }, [currText]);
+
+  useEffect(() => {
+    if (spanRef.current) {
+      setWidth(spanRef.current.offsetWidth);
+    }
   }, [currText]);
 
   const handleTextChange = (e) => {
@@ -45,8 +53,22 @@ export const TextNode = ({ id, data }) => {
             value={currText} 
             onChange={handleTextChange} 
             className="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            style={{ width: `${width}px` }}
           />
         </label>
+        <div 
+          ref={spanRef} 
+          className="text-sm"
+          style={{ 
+            position: 'absolute', 
+            visibility: 'hidden', 
+            whiteSpace: 'pre',
+            padding: '6px 8px',
+            border: '1px solid transparent' 
+          }}
+        >
+          {currText.split('\n').reduce((longest, current) => current.length > longest.length ? current : longest, '')}
+        </div>
       </div>
     </BaseNode>
   );

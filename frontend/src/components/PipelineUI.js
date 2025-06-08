@@ -1,4 +1,3 @@
-
 import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
 import { useStore } from '../stores/store';
@@ -6,11 +5,12 @@ import { shallow } from 'zustand/shallow';
 import { InputNode } from './nodes/inputNode';
 import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
-import { TextNode } from './nodes/TextNode';
+import { TextNode } from './nodes/textNode';
 import { TranslatorNode } from './nodes/TranslatorNode';
 import { ClassifierNode } from './nodes/ClassifierNode';
 import { SummarizerNode } from './nodes/SummarizerNode';
 import { RegexNode } from './nodes/RegexNode';
+import { SentimentNode } from './nodes/SentimentNode';
 import { Undo, Redo } from 'lucide-react';
 
 import 'reactflow/dist/style.css';
@@ -26,6 +26,7 @@ const nodeTypes = {
   classifier: ClassifierNode,
   summarizer: SummarizerNode,
   regex: RegexNode,
+  sentiment: SentimentNode,
 };
 
 const selector = (state) => ({

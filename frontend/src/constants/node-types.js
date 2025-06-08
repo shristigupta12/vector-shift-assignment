@@ -7,7 +7,8 @@ import {
   FolderKanban,
   AlignJustify,
   Regex,
-  FolderInput
+  FolderInput,
+  Smile
 } from 'lucide-react';
 
 export const NODE_TYPES = {
@@ -50,5 +51,10 @@ export const NODE_TYPES = {
     type: 'regex',
     title: 'Regex',
     icon: <Regex className="w-5 h-5" />,
+  },
+  sentiment: {
+    type: 'sentiment',
+    title: 'Sentiment',
+    icon: <Smile className="w-5 h-5" />,
   },
 }; 
