@@ -33,30 +33,28 @@ class Pipeline(BaseModel):
     edges: List[Edge]
 
 def is_dag(nodes: List[Node], edges: List[Edge]) -> bool:
+    if not nodes:
+        return True
+
     adj = {node.id: [] for node in nodes}
+    in_degree = {node.id: 0 for node in nodes}
+
     for edge in edges:
         adj[edge.source].append(edge.target)
+        in_degree[edge.target] += 1
 
-    visiting = set()
-    visited = set()
-
-    def has_cycle(node_id):
-        visiting.add(node_id)
+    queue = [node.id for node in nodes if in_degree[node.id] == 0]
+    
+    count = 0
+    while queue:
+        node_id = queue.pop(0)
+        count += 1
         for neighbor in adj.get(node_id, []):
-            if neighbor in visiting:
-                return True
-            if neighbor not in visited:
-                if has_cycle(neighbor):
-                    return True
-        visiting.remove(node_id)
-        visited.add(node_id)
-        return False
+            in_degree[neighbor] -= 1
+            if in_degree[neighbor] == 0:
+                queue.append(neighbor)
 
-    for node in nodes:
-        if node.id not in visited:
-            if has_cycle(node.id):
-                return False
-    return True
+    return count == len(nodes)
 
 @app.get('/')
 def read_root():

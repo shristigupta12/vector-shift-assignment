@@ -6,6 +6,7 @@ import { shallow } from 'zustand/shallow';
 import { ThemeToggle } from './components/ThemeToggle';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Toaster } from "./components/ui/sonner";
 
 const selector = (state) => ({
   theme: state.theme,
@@ -52,6 +53,7 @@ function App() {
           <SubmitButton />
         </motion.div>
       </div>
+      <Toaster />
     </div>
   );
 }
