@@ -41,6 +41,7 @@ const selector = (state) => ({
   redo: state.redo,
   canUndo: state.canUndo,
   canRedo: state.canRedo,
+  theme: state.theme,
 });
 
 export const PipelineUI = () => {
@@ -57,7 +58,8 @@ export const PipelineUI = () => {
       undo,
       redo,
       canUndo,
-      canRedo
+      canRedo,
+      theme,
     } = useStore(selector, shallow);
 
     const getInitNodeData = (nodeID, type) => {
@@ -139,7 +141,14 @@ export const PipelineUI = () => {
             >
                 <Background color="#aaa" gap={gridSize} />
                 <Controls />
-                <MiniMap />
+                <MiniMap
+                    style={{
+                        backgroundColor: theme === 'dark' ? '#04020B' : '#fff',
+                        border: theme === 'dark' ? '1px solid #420C89' : '1px solid #e2e8f0',
+                    }}
+                    nodeColor={theme === 'dark' ? '#4F45E4' :  '#f8f8f8'}
+                    maskColor={theme === 'dark' ? 'rgba(4, 2, 11, 0.6)' : 'rgba(240, 240, 240, 0.6)'}
+                 />
             </ReactFlow>
         </div>
         </>
