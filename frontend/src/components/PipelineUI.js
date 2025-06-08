@@ -104,7 +104,7 @@ export const PipelineUI = () => {
 
     return (
         <>
-        <div className="absolute top-[20vh] right-[50vw] z-10 bg-white p-2 rounded-md shadow-md flex gap-2 border border-neutral-300">
+        <div className="absolute lg:top-[20vh] sm:top-[26vh] top-[42vh] sm:right-[50vw] right-[42vw] z-10 bg-white p-2 rounded-md shadow-md flex gap-2 border border-neutral-300">
             <button 
                 onClick={undo} 
                 disabled={!canUndo()} 
