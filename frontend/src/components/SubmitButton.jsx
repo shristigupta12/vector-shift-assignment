@@ -14,7 +14,7 @@ export const SubmitButton = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch('https://vector-shift-assignment-tr4s.onrender.com', {
+            const response = await fetch('https://vector-shift-assignment-tr4s.onrender.com/pipelines/parse', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
